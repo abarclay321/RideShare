@@ -1,0 +1,78 @@
+<!-- Page to display travel results -->
+{% extends "layout.html" %}
+
+{% block main %}
+<font color = "blue" size = "14">{{Number - 1}} other travelers are going your way.</font>
+<br></br>
+You are {{direction}} at {{airport}} on {{date}}.
+<br></br>
+Ridesharing would cost <b>{{Ridesharecost | usd}}</b> per person.
+<br></br>
+The cheapest route to travel is {{Cheaproute}} for {{Cheapprice | usd}} per person.
+<br></br>
+<font color = "red" size = "7">Your traveling group is:</font>
+<br></br>
+
+<table style="width:100%">
+      <thead>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone Number</th>
+        <th>Flight Time (departing or arriving)</th>
+        <th>Ability to drive</th>
+      </thead>
+      <tbody>
+          {% for traveler in travelers %}
+              <tr>
+                  <td> {{traveler.name}}</td>
+                  <td> {{traveler.email}}</td>
+                  <td> {{traveler.phonenumber}}</td>
+                  <td> {{traveler.time}}</td>
+                  <td> {{traveler.driver}}</td>
+              </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<br></br>
+<font color = "red" size="7">All travel options for {{airport}} are:</font>
+
+<table style="width:100%">
+      <thead>
+        <th>Number of Travelers</th>
+        <th>Gas & Tolls</th>
+        <th>Rental Car</th>
+        <th>Public Transport</th>
+        <th>Public Transport + Rideshare</th>
+        <th>Rideshare</th>
+        <th>Shared Shuttle</th>
+      </thead>
+      <tbody>
+          {% for price in prices %}
+              <tr>
+                  <td> {{price.Number_of_Travelers}}</td>
+                  <td> {{price.Gas_and_Tolls | usd}}</td>
+                  <td> {{price.Rental_Car | usd}}</td>
+                  <td> {{price.Public_Transport | usd}}</td>
+                  <td> {{price.Public_Transport_Rideshare | usd}}</td>
+                  <td> {{price.Rideshare | usd}}</td>
+                  <td> {{price.Shared_Shuttle | usd}}</td>
+              </tr>
+          {% endfor %}
+      </tbody>
+    </table>
+
+
+<br></br>
+Note: Driving own car expenses do not include parking fees. Parking at {{airport}} costs <b>{{Parking | usd}}</b> per day. Please consider this route and splitting the costs of parking if someone in your group is able to drive.
+<br></br>
+<i>*Boston Shared Shuttle is the bus price - no private shuttles are available</i>
+<br></br>
+<i>**Please email the individuals on your route. If a new person is added, expect a new group email. </i>
+
+
+{% endblock %}

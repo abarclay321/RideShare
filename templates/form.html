@@ -1,0 +1,116 @@
+{% extends "layout.html" %}
+
+{% block main %}
+
+    <!-- http://getbootstrap.com/docs/4.1/content/typography/ -->
+    <h1 class="mb-3">SOM Travel Coordination Form</h1>
+
+    <!-- http://getbootstrap.com/docs/4.1/components/forms/ -->
+    <form action="/form" method="post">
+
+        <!-- Basic contact information -->
+        <div class="form-group">
+            <label for="name">Name:</label><br>
+            <input type="text" id="name" name="name">
+            <br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email">
+            <br>
+            <label for="phonenumber">Phone Number:</label><br>
+            <input type="number" id="phonenumber" name="phonenumber">
+            <br>
+        </div>
+        <!-- Departing or arriving? -->
+        <div class="form-group">
+            <label for="Direction of Travel">Direction of Travel:</label><br>
+            <div class="form-check">
+                <input class="form-check-input" id="Departing" name="Departing" type="radio" value="Departing">
+                <label class="form-check-label" for="Departing">Departing</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" id="Arriving" name="Arriving" type="radio" value="Arriving">
+                <label class="form-check-label" for="Arriving">Arriving</label>
+            </div>
+
+        </div>
+
+        <!-- able to drive? -->
+        <div class="form-group">
+            <label for="Ability to Drive">Are you able to drive your own car to or from the airport?</label><br>
+            <div class="form-check">
+                <input class="form-check-input" id="Yes" name="Yes" type="radio" value="Yes">
+                <label class="form-check-label" for="Yes">Yes</label>
+            </div>
+
+            <div class="form-check">
+                <input class="form-check-input" id="No" name="No" type="radio" value="No">
+                <label class="form-check-label" for="No">No</label>
+            </div>
+
+        </div>
+
+        <!-- airport traveling to or from -->
+        <label for="airport"> Airport:</label><br>
+        <div class="form-group">
+            <select class="form-control" name="airport">
+                <option disabled selected value="">Airport</option>
+                <option value="Tweed">New Haven Tweed</option>
+                <option value="JFK">JFK</option>
+                <option value="Newark">Newark</option>
+                <option value="LaGuardia">LaGuardia</option>
+                <option value="Hartford">Hartford</option>
+                <option value="Boston">Boston</option>
+            </select>
+        </div>
+
+        <!--determine time block to coordinate travel -->
+        <label for="block"> Flight Departure or Arrival Time Frame:</label><br>
+        <div class="form-group">
+            <select class="form-control" name="block">
+                <option disabled selected value="">Time Block</option>
+                <option value="4-6am">4:00 - 6:00 a.m.</option>
+                <option value="6-8am">6:00 - 8:00 a.m.</option>
+                <option value="8-10am">8:00 - 10:00 a.m.</option>
+                <option value="10-12pm">10:00 - 12:00 p.m.</option>
+                <option value="12-2pm">12:00 - 2:00 p.m.</option>
+                <option value="2-4pm">2:00 - 4:00 p.m.</option>
+                <option value="4-6pm">4:00 - 6:00 p.m.</option>
+                <option value="6-8pm">6:00 - 8:00 p.m.</option>
+                <option value="8-10pm">8:00 - 10:00 p.m.</option>
+                <option value="10-12am">10:00 - 12:00 a.m.</option>
+                <option value="12-4am">12:00 - 4:00 a.m.</option>
+            </select>
+        </div>
+
+        <!-- set date of flight -->
+        <label for="date">Date of travel:</label><br>
+        <input type="date", name="date"/><br><br>
+
+        <!-- set  time of flight -->
+        <label for="time">Flight time (departure or landing):</label><br>
+        <input type="time", name="time"/><br><br>
+
+
+        <!-- http://getbootstrap.com/docs/4.1/components/buttons/ -->
+        <button class="btn btn-primary" type="submit", value="submit">Submit</button>
+
+    </form>
+
+    <script>
+
+       document.querySelector('form').onsubmit = function() {
+           if(!document.querySelector('input').value) {
+               alert('Please enter all fields')
+               return false;
+           }
+           else if (!document.querySelector('select').value){
+               alert('Please enter all fields')
+               return false;
+           }
+           return true;
+       };
+
+    </script>
+
+{% endblock %}
